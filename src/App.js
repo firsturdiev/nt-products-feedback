@@ -1,6 +1,8 @@
+import Suggestions from "./screens/Suggestions/Suggestions";
+
 function App() {
   return (
-    'Salom'
+      <Suggestions />
   )
 }
 

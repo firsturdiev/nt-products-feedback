@@ -19,6 +19,7 @@ body {
   font-size: 16px;
   line-height: 23px;
   color: var(--color-dark-ocean);
+  background-color: var(--color-white-ghost);
 }
 
 .site-content {
@@ -29,12 +30,23 @@ body {
   flex-shrink: 0;
 }
 
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
 img {
   max-width: 100%;
   height: auto;
 }
 
-/* COLORS */
+/* VARIABLES */
 
 :root {
   --color-blue-orchid: #ad1fea;
@@ -46,12 +58,16 @@ img {
   --color-white-ghost: #f7f8fd;
   --color-white: #fff;
   --color-white-cotton: #f2f4ff;
+  --color-red: #d73737;
   --color-red-peach: #f49f85;
+
+  --container-width: 1110px;
 }
 
 /* TYPOGRAPHY */
 
 .heading {
+  margin: 0;
   font-weight: bold;
   color: var(--color-dark-jewel);
 }
