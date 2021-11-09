@@ -1,10 +1,19 @@
-import './Suggestions.css';
+import { useEffect, useState } from 'react';
 import Radio from '../../components/Radio/Radio';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import Button from '../../components/Button/Button';
-import Counter from '../../components/Counter/Counter';
+import Feedback from '../../components/Feedback/Feedback';
+import './Suggestions.css';
 
 function Suggestions() {
+  const [feedbacks, setFeedbacks] = useState([]);
+
+  useEffect(() => {
+    fetch('https://618a17a334b4f400177c43e4.mockapi.io/all/feedbacks')
+      .then(response => response.json())
+      .then(data => setFeedbacks(data));
+  });
+
   return (
     <main className="site-content">
       <h1 className="visually-hidden">firstTeam feedback board</h1>
@@ -48,15 +57,11 @@ function Suggestions() {
           </header>
 
           <ol className="suggestions__list">
-            <li className="suggestions__item feedback">
-              <Counter className="feedback__upvotes" count="27" />
-              <div className="feedback__inner">
-                <h3 className="feedback__title heading heading--tertiary">Add tags for solutions</h3>
-                <p className="feedback__desc">Easier to search for solutions based on a specific stack.</p>
-                <Radio className="feedback__category" label="Enhacement" />
-              </div>
-              <span className="feedback__comments">2</span>
-            </li>
+            {
+              feedbacks.map(feedback => (
+                <Feedback {...feedback} />
+              ))
+            }
           </ol>
         </div>
       </section>
