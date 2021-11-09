@@ -39,7 +39,8 @@ body {
 .visually-hidden {
   position: absolute;
   opacity: 0;
-  cursor: pointer;
+  pointer-events: none;
+  clip: rect(0, 0, 0, 0);
 }
 
 img {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Radio from '../../components/Radio/Radio';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import Button from '../../components/Button/Button';
@@ -7,12 +7,40 @@ import './Suggestions.css';
 
 function Suggestions() {
   const [feedbacks, setFeedbacks] = useState([]);
+  const sortRef = useRef();
+  const [category, setCategory] = useState('All');
+  const [requestURL, setRequestURL] = useState('https://618a17a334b4f400177c43e4.mockapi.io/all/feedbacks?');
 
   useEffect(() => {
-    fetch('https://618a17a334b4f400177c43e4.mockapi.io/all/feedbacks')
+    fetch(requestURL)
       .then(response => response.json())
       .then(data => setFeedbacks(data));
-  });
+  }, [requestURL]);
+
+  useEffect(getRequestURL, [category]);
+
+  function getRequestURL() {
+    let URL = 'https://618a17a334b4f400177c43e4.mockapi.io/all/feedbacks?';
+
+    switch (sortRef.current.value) {
+      case 'Least Upvotes':
+        URL += 'sortBy=upvotes';
+        break;
+      case 'Most Comments':
+        URL += 'sortBy=comments&order=desc';
+        break;
+      case 'Least Comments':
+        URL += 'sortBy=comments';
+        break;
+      default:
+        URL += 'sortBy=upvotes&order=desc';
+    }
+
+    if (category !== 'All')
+      URL += `&category=${category}`;
+
+    setRequestURL(URL);
+  }
 
   return (
     <main className="site-content">
@@ -26,14 +54,13 @@ function Suggestions() {
           </div>
 
           <div className="suggestions__sidebar-inner">
-            <form className="suggestions__filter" action="https://echo.htmlacademy.ru" method="GET">
-              <Radio label="All" value="all" name="feedback_category" defaultChecked />
-              <Radio label="UI" value="ui" name="feedback_category" />
-              <Radio label="UX" value="ux" name="feedback_category" />
-              <Radio label="Enhancement" value="enhancement" name="feedback_category" />
-              <Radio label="Bug" value="bug" name="feedback_category" />
-              <Radio label="Feature" value="feature" name="feedback_category" />
-            </form>
+            <div className="suggestions__filter">
+              {
+                ['All', 'UI', 'UX', 'Enhancement', 'Bug', 'Feature'].map((category, index) => (
+                  <Radio onChange={(e) => setCategory(e.target.value)} label={category} name='feedback_category' value={category} defaultChecked={index === 0} key={index} />
+                ))
+              }
+            </div>
 
             <div className="suggestions__roadmap">
               <header className="suggestions__roadmap-top">
@@ -52,14 +79,14 @@ function Suggestions() {
         <div className="suggestions__content">
           <header className="suggestions__content-top">
             <h2 className="suggestions__content-heading heading heading--tertiary">6 Suggestions</h2>
-            <Dropdown className="suggestions__content-dropdown" options={['Most Upvotes', 'Least Upvotes', 'Most Comments', 'Least Comments']} />
+            <Dropdown onChange={getRequestURL} ref={sortRef} className="suggestions__content-dropdown" options={['Most Upvotes', 'Least Upvotes', 'Most Comments', 'Least Comments']} />
             <Button className="btn--blue-orchid">+ Add Feedback</Button>
           </header>
 
           <ol className="suggestions__list">
             {
               feedbacks.map(feedback => (
-                <Feedback {...feedback} />
+                <Feedback {...feedback} key={feedback.id} />
               ))
             }
           </ol>

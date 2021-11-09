@@ -1,13 +1,14 @@
+import { forwardRef } from 'react';
 import './Dropdown.css';
 
-function Dropdown({className, options, ...props}) {
+function Dropdown({className, options, ...props}, ref) {
   return (
-    <select className={"dropdown " + (className || '')} {...props}>
+    <select className={"dropdown " + (className || '')} {...props} ref={ref}>
       {
-        options.map(option => <option value={option.toLowerCase()}>{option}</option>)
+        options.map((option, index) => <option value={option} key={index}>{option}</option>)
       }
     </select>
   )
 }
 
-export default Dropdown;
+export default forwardRef(Dropdown);
