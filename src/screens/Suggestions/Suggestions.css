@@ -23,7 +23,7 @@
   margin-bottom: 24px;
   padding: 24px;
   color: #fff;
-  background-image: url('../../assets/img/bg-hero.png');
+  background-image: url("../../assets/img/bg-hero.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -51,4 +51,105 @@
   padding: 24px;
   background-color: var(--color-white);
   border-radius: 10px;
+}
+
+.suggestions__roadmap {
+  padding: 24px;
+  padding-top: 20px;
+  background-color: var(--color-white);
+  border-radius: 10px;
+}
+
+.suggestions__roadmap-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.suggestions__roadmap-link {
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 19px;
+  color: var(--color-blue-fish);
+  transition: color 0.3s;
+}
+
+.suggestions__roadmap-link:hover {
+  color: #8397f8;
+}
+
+.suggestions__roadmap-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.suggestions__roadmap-item {
+  display: flex;
+  align-items: center;
+}
+
+.suggestions__roadmap-item::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  margin-right: 16px;
+  border-radius: 50%;
+}
+
+.suggestions__roadmap-item:first-child::before {
+  background-color: var(--color-red-peach);
+}
+
+.suggestions__roadmap-item:nth-child(2)::before {
+  background-color: var(--color-blue-fish);
+}
+
+.suggestions__roadmap-item:last-child::before {
+  background-color: var(--color-blue-mana);
+}
+
+.suggestions__roadmap-item span {
+  margin-left: auto;
+  font-weight: bold;
+}
+
+/* SUGGESTIONS__CONTENT-TOP */
+
+.suggestions__content-top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 14px 16px;
+  padding-left: 24px;
+  border-radius: 10px;
+  background-color: var(--color-dark-raven);
+}
+
+.suggestions__content-heading {
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+  color: var(--color-white);
+}
+
+.suggestions__content-heading::before {
+  content: '';
+  width: 24px;
+  height: 24px;
+  margin-right: 16px;
+  background-image: url('../../assets/img/icon-bulb.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.suggestions__content-dropdown {
+  margin-right: auto;
+}
+
+/* FEEDBACK */
+.feedback__category {
+  pointer-events: none;
 }

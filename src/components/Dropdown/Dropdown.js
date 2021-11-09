@@ -2,9 +2,9 @@ import './Dropdown.css';
 
 function Dropdown({className, options, ...props}) {
   return (
-    <select className="dropdown" {...props}>
+    <select className={"dropdown " + (className || '')} {...props}>
       {
-        options.map((option, index) => <option key={index} value={option.toLowerCase()}>{option}</option>)
+        options.map(option => <option value={option.toLowerCase()}>{option}</option>)
       }
     </select>
   )
