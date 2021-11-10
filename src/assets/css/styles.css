@@ -31,9 +31,9 @@ body {
 }
 
 .container {
-  max-width: var(--container-width);
-  width: 100%;
+  max-width: 1150px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .visually-hidden {
@@ -62,8 +62,6 @@ img {
   --color-white-cotton: #f2f4ff;
   --color-red: #d73737;
   --color-red-peach: #f49f85;
-
-  --container-width: 1110px;
 }
 
 /* TYPOGRAPHY */
@@ -96,4 +94,18 @@ img {
   font-size: 14px;
   line-height: 20px;
   letter-spacing: -0.2px;
+}
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0 40px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    padding: initial;
+  }
 }

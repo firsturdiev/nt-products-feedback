@@ -6,16 +6,18 @@ import Feedback from '../../components/Feedback/Feedback';
 import './Suggestions.css';
 
 function Suggestions() {
-  const [feedbacks, setFeedbacks] = useState([]);
-  const sortRef = useRef();
+  const [feedbacks, setFeedbacks] = useState(JSON.parse(localStorage.getItem('feedbacks')));
   const [category, setCategory] = useState('All');
+  const [menuState, setMenuState] = useState(false);
+
+  const sortRef = useRef();
   const [requestURL, setRequestURL] = useState('https://618a17a334b4f400177c43e4.mockapi.io/all/feedbacks?');
 
-  useEffect(() => {
-    fetch(requestURL)
-      .then(response => response.json())
-      .then(data => setFeedbacks(data));
-  }, [requestURL]);
+  // useEffect(() => {
+  //   fetch(requestURL)
+  //     .then(response => response.json())
+  //     .then(data => setFeedbacks(data));
+  // }, [requestURL]);
 
   useEffect(getRequestURL, [category]);
 
@@ -42,6 +44,11 @@ function Suggestions() {
     setRequestURL(URL);
   }
 
+  function handleMenuClick(e) {
+    if ((window.innerWidth <= 600)  && e.target.matches('.suggestions__menu'))  
+      setMenuState(false);
+  }
+
   return (
     <main className="site-content">
       <h1 className="visually-hidden">firstTeam feedback board</h1>
@@ -53,34 +60,37 @@ function Suggestions() {
             <p className="suggestions__hero-subtitle">Feedback Board</p>
           </div>
 
-          <div className="suggestions__sidebar-inner">
-            <div className="suggestions__filter">
-              {
-                ['All', 'UI', 'UX', 'Enhancement', 'Bug', 'Feature'].map((category, index) => (
-                  <Radio onChange={(e) => setCategory(e.target.value)} label={category} name='feedback_category' value={category} defaultChecked={index === 0} key={index} />
-                ))
-              }
-            </div>
-
-            <div className="suggestions__roadmap">
-              <header className="suggestions__roadmap-top">
-                <h3 className="suggestions__roadmap-title heading heading--tertiary">Roadmap</h3>
-                <a className="suggestions__roadmap-link" href="/roadmap">View</a>
-              </header>
-              <ul className="suggestions__roadmap-list">
-                <li className="suggestions__roadmap-item">Planned <span>23</span></li>
-                <li className="suggestions__roadmap-item">In-Progress <span>2</span></li>
-                <li className="suggestions__roadmap-item">Live <span>12</span></li>
-              </ul>
+          <div onClick={handleMenuClick} className={"suggestions__menu " + (menuState ? "suggestions__menu--open" : '')}>
+            <div className="suggestions__menu-inner">
+              <div className="suggestions__filter">
+                {
+                  ['All', 'UI', 'UX', 'Enhancement', 'Bug', 'Feature'].map((category, index) => (
+                    <Radio onChange={(e) => setCategory(e.target.value)} label={category} name='feedback_category' value={category} defaultChecked={index === 0} key={index} />
+                  ))
+                }
+              </div>
+              <div className="suggestions__roadmap">
+                <header className="suggestions__roadmap-top">
+                  <h3 className="suggestions__roadmap-title heading heading--tertiary">Roadmap</h3>
+                  <a className="suggestions__roadmap-link" href="/roadmap">View</a>
+                </header>
+                <ul className="suggestions__roadmap-list">
+                  <li className="suggestions__roadmap-item">Planned <span>23</span></li>
+                  <li className="suggestions__roadmap-item">In-Progress <span>2</span></li>
+                  <li className="suggestions__roadmap-item">Live <span>12</span></li>
+                </ul>
+              </div>
             </div>
           </div>
+
+          <button onClick={() => setMenuState(!menuState)} className={"suggestions__menu-toggle " + (menuState ? "suggestions__menu-toggle--active" : "")} type="button" aria-label="Toggle open menu"></button>
         </div>
 
         <div className="suggestions__content">
           <header className="suggestions__content-top">
             <h2 className="suggestions__content-heading heading heading--tertiary">6 Suggestions</h2>
-            <Dropdown onChange={getRequestURL} ref={sortRef} className="suggestions__content-dropdown" options={['Most Upvotes', 'Least Upvotes', 'Most Comments', 'Least Comments']} />
-            <Button className="btn--blue-orchid">+ Add Feedback</Button>
+            <Dropdown onChange={getRequestURL} ref={sortRef} className="suggestions__content-dropdown" options={['Most Upvotes', 'Least Upvotes', 'Most Comments', 'Least Comments']} aria-label="Sorting feedbacks" />
+            <Button className="suggestions__add-btn btn--blue-orchid">+ Add Feedback</Button>
           </header>
 
           <ol className="suggestions__list">

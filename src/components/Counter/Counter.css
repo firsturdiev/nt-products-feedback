@@ -17,26 +17,30 @@
   transition-duration: 0.3s;
 }
 
+.counter--active {
+  color: var(--color-white);
+  background-color: var(--color-blue-fish);
+}
+
 .counter:hover {
   background-color: #cfd7ff;
 }
 
 .counter:active {
-  color: var(--color-white);
-  background-color: var(--color-blue-fish);
+  opacity: 0.6;
 }
 
 .counter::before {
-  content: '';
+  content: "";
   width: 11px;
   height: 7px;
   margin-bottom: 8px;
-  background-image: url('../../assets/img/icon-arrow-top-light.svg');
+  background-image: url("../../assets/img/icon-arrow-top-light.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
 }
 
-.counter:active::before {
-  background-image: url('../../assets/img/icon-arrow-top-dark.svg');
+.counter--active::before {
+  background-image: url("../../assets/img/icon-arrow-top-dark.svg");
 }
