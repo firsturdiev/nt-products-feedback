@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import ErrorImg from '../../assets/img/icon-404.svg';
 import Radio from '../../components/Radio/Radio';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import Button from '../../components/Button/Button';
@@ -6,18 +7,18 @@ import Feedback from '../../components/Feedback/Feedback';
 import './Suggestions.css';
 
 function Suggestions() {
-  const [feedbacks, setFeedbacks] = useState([]);
+  const [feedbacks, setFeedbacks] = useState(JSON.parse(localStorage.getItem('feedbacks')));
   const [category, setCategory] = useState('All');
   const [menuState, setMenuState] = useState(false);
 
   const sortRef = useRef();
   const [requestURL, setRequestURL] = useState('https://618a17a334b4f400177c43e4.mockapi.io/all/feedbacks?');
 
-  useEffect(() => {
-    fetch(requestURL)
-      .then(response => response.json())
-      .then(data => setFeedbacks(data));
-  }, [requestURL]);
+  // useEffect(() => {
+  //   fetch(requestURL)
+  //     .then(response => response.json())
+  //     .then(data => setFeedbacks(data));
+  // }, [requestURL]);
 
   useEffect(getRequestURL, [category]);
 
@@ -45,7 +46,7 @@ function Suggestions() {
   }
 
   function handleMenuClick(e) {
-    if ((window.innerWidth <= 600)  && e.target.matches('.suggestions__menu'))  
+    if ((window.innerWidth <= 600) && e.target.matches('.suggestions__menu'))
       setMenuState(false);
   }
 
@@ -93,17 +94,26 @@ function Suggestions() {
             <Button className="suggestions__add-btn btn--blue-orchid">+ Add Feedback</Button>
           </header>
 
-          <ol className="suggestions__list">
-            {
-              (feedbacks.length) 
-              ? feedbacks.map(feedback => (
-                <Feedback {...feedback} key={feedback.id} />
-              ))
-              : (
-                ''
+          {
+            (feedbacks)
+              ? (
+                <ol className="suggestions__list">
+                  {
+                    feedbacks.map(feedback => (
+                      <Feedback {...feedback} key={feedback.id} />
+                    ))
+                  }
+                </ol>
               )
-            }
-          </ol>
+              : (
+                <div className="suggestions__error">
+                  <img className="suggestions__error-icon" src={ErrorImg} width="131" height="137" alt="" aria-hidden />
+                  <h2 className="suggestions__error-heading heading heading--primary">There is no feedback yet.</h2>
+                  <p className="suggestions__error-text">Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.</p>
+                  <Button className="suggestions__error-btn btn--blue-orchid">+ Add Feedback</Button>
+                </div>
+              )
+          }
         </div>
       </section>
     </main>
