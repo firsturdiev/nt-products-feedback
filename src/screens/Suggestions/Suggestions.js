@@ -95,9 +95,13 @@ function Suggestions() {
 
           <ol className="suggestions__list">
             {
-              feedbacks.map(feedback => (
+              (feedbacks.length) 
+              ? feedbacks.map(feedback => (
                 <Feedback {...feedback} key={feedback.id} />
               ))
+              : (
+                ''
+              )
             }
           </ol>
         </div>
