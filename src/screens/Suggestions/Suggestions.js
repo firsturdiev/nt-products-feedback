@@ -6,18 +6,18 @@ import Feedback from '../../components/Feedback/Feedback';
 import './Suggestions.css';
 
 function Suggestions() {
-  const [feedbacks, setFeedbacks] = useState(JSON.parse(localStorage.getItem('feedbacks')));
+  const [feedbacks, setFeedbacks] = useState([]);
   const [category, setCategory] = useState('All');
   const [menuState, setMenuState] = useState(false);
 
   const sortRef = useRef();
   const [requestURL, setRequestURL] = useState('https://618a17a334b4f400177c43e4.mockapi.io/all/feedbacks?');
 
-  // useEffect(() => {
-  //   fetch(requestURL)
-  //     .then(response => response.json())
-  //     .then(data => setFeedbacks(data));
-  // }, [requestURL]);
+  useEffect(() => {
+    fetch(requestURL)
+      .then(response => response.json())
+      .then(data => setFeedbacks(data));
+  }, [requestURL]);
 
   useEffect(getRequestURL, [category]);
 
