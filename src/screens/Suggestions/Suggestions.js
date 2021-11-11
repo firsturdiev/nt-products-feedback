@@ -5,7 +5,7 @@ import Dropdown from '../../components/Dropdown/Dropdown';
 import Button from '../../components/Button/Button';
 import Feedback from '../../components/Feedback/Feedback';
 import './Suggestions.css';
-import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 
 function Suggestions() {
   const [feedbacks, setFeedbacks] = useState(JSON.parse(localStorage.getItem('feedbacks')));
@@ -14,6 +14,10 @@ function Suggestions() {
 
   const sortRef = useRef();
   const [requestURL, setRequestURL] = useState('https://618a17a334b4f400177c43e4.mockapi.io/all/feedbacks?');
+
+  useEffect(() => {
+    document.title = 'Suggestions';
+  }, []);
 
   useEffect(() => {
     fetch(requestURL)
@@ -51,10 +55,6 @@ function Suggestions() {
       setMenuState(false);
   }
 
-  function handleAddFeedback() {
-    return null;
-  }
-
   return (
     <main className="site-content">
       <h1 className="visually-hidden">firstTeam feedback board</h1>
@@ -78,7 +78,7 @@ function Suggestions() {
               <div className="suggestions__roadmap">
                 <header className="suggestions__roadmap-top">
                   <h3 className="suggestions__roadmap-title heading heading--tertiary">Roadmap</h3>
-                  <a className="suggestions__roadmap-link" href="/roadmap">View</a>
+                  <Link to="/roadmap" className="suggestions__roadmap-link">View</Link>
                 </header>
                 <ul className="suggestions__roadmap-list">
                   <li className="suggestions__roadmap-item">Planned <span>23</span></li>
@@ -94,9 +94,9 @@ function Suggestions() {
 
         <div className="suggestions__content">
           <header className="suggestions__content-top">
-            <h2 className="suggestions__content-heading heading heading--tertiary">6 Suggestions</h2>
+            <h2 className="suggestions__content-heading heading heading--tertiary">{feedbacks.length} Suggestions</h2>
             <Dropdown onChange={getRequestURL} ref={sortRef} className="suggestions__content-dropdown" options={['Most Upvotes', 'Least Upvotes', 'Most Comments', 'Least Comments']} aria-label="Sorting feedbacks" />
-            <Button onClick={handleAddFeedback} className="suggestions__add-btn btn--blue-orchid">+ Add Feedback</Button>
+            <Link to="/feedback/new" className="suggestions__add-btn btn btn--blue-orchid">+ Add Feedback</Link>
           </header>
 
           {

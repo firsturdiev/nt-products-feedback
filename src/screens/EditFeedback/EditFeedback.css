@@ -1,8 +1,8 @@
-.new-feedback {
+.edit-feedback {
   margin-block: 100px;
 }
 
-.new-feedback__cancel-btn {
+.edit-feedback__cancel-btn {
   margin-bottom: 68px;
 }
 
@@ -27,8 +27,8 @@
   background-size: cover;
 }
 
-.form--post::before {
-  background-image: url('../../assets/img/icon-add.svg');
+.form--edit::before {
+  background-image: url('../../assets/img/icon-edit.svg');
 }
 
 .form__inner {
@@ -58,29 +58,21 @@
   line-height: 20px;
 }
 
-.form__end {
-  text-align: end;
+.form__item-field {
+  width: 100%;
 }
 
 .form__cancel-btn, 
-.form__submit-btn {
+.form__submit-btn,
+.form__delete-btn {
   width: auto;
   padding: 12px 24px;
+}
+
+.form__delete-btn {
+  float: inline-start;
 }
 
 .form__cancel-btn {
   margin-right: 16px;
 }
-
-/* RESPONSIVE */
-
-@media screen and (max-width: 600px) {
-  .new-feedback {
-    margin-bottom: 56px;
-  }
-
-  .form {
-    width: auto;
-  }
-}
-

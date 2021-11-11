@@ -5,6 +5,7 @@
 }
 
 .input__field {
+  width: 100%;
   padding: 13px 24px;
   font-family: inherit;
   font-size: 15px;

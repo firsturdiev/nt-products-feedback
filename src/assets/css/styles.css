@@ -106,6 +106,18 @@ img {
 
 @media screen and (max-width: 600px) {
   .container {
-    padding: initial;
+    padding: 0 24px;
+  }
+
+  .heading--primary {
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: -0.25px;
+  }
+
+  .heading--tertiary {
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.18px;
   }
 }
