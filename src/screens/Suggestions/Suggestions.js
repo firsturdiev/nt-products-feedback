@@ -5,6 +5,7 @@ import Dropdown from '../../components/Dropdown/Dropdown';
 import Button from '../../components/Button/Button';
 import Feedback from '../../components/Feedback/Feedback';
 import './Suggestions.css';
+import { useHistory } from 'react-router';
 
 function Suggestions() {
   const [feedbacks, setFeedbacks] = useState(JSON.parse(localStorage.getItem('feedbacks')));
@@ -14,11 +15,11 @@ function Suggestions() {
   const sortRef = useRef();
   const [requestURL, setRequestURL] = useState('https://618a17a334b4f400177c43e4.mockapi.io/all/feedbacks?');
 
-  // useEffect(() => {
-  //   fetch(requestURL)
-  //     .then(response => response.json())
-  //     .then(data => setFeedbacks(data));
-  // }, [requestURL]);
+  useEffect(() => {
+    fetch(requestURL)
+      .then(response => response.json())
+      .then(data => setFeedbacks(data));
+  }, [requestURL]);
 
   useEffect(getRequestURL, [category]);
 
@@ -48,6 +49,10 @@ function Suggestions() {
   function handleMenuClick(e) {
     if ((window.innerWidth <= 600) && e.target.matches('.suggestions__menu'))
       setMenuState(false);
+  }
+
+  function handleAddFeedback() {
+    return null;
   }
 
   return (
@@ -91,7 +96,7 @@ function Suggestions() {
           <header className="suggestions__content-top">
             <h2 className="suggestions__content-heading heading heading--tertiary">6 Suggestions</h2>
             <Dropdown onChange={getRequestURL} ref={sortRef} className="suggestions__content-dropdown" options={['Most Upvotes', 'Least Upvotes', 'Most Comments', 'Least Comments']} aria-label="Sorting feedbacks" />
-            <Button className="suggestions__add-btn btn--blue-orchid">+ Add Feedback</Button>
+            <Button onClick={handleAddFeedback} className="suggestions__add-btn btn--blue-orchid">+ Add Feedback</Button>
           </header>
 
           {
@@ -106,11 +111,11 @@ function Suggestions() {
                 </ol>
               )
               : (
-                <div className="suggestions__error">
-                  <img className="suggestions__error-icon" src={ErrorImg} width="131" height="137" alt="" aria-hidden />
-                  <h2 className="suggestions__error-heading heading heading--primary">There is no feedback yet.</h2>
-                  <p className="suggestions__error-text">Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.</p>
-                  <Button className="suggestions__error-btn btn--blue-orchid">+ Add Feedback</Button>
+                <div className="suggestions__empty">
+                  <img className="suggestions__empty-icon" src={ErrorImg} width="131" height="137" alt="" aria-hidden />
+                  <h2 className="suggestions__empty-heading heading heading--primary">There is no feedback yet.</h2>
+                  <p className="suggestions__empty-text">Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.</p>
+                  <Button className="suggestions__empty-btn btn--blue-orchid">+ Add Feedback</Button>
                 </div>
               )
           }
