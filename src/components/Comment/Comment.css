@@ -1,0 +1,15 @@
+.comment__top {
+  display: flex;
+  align-items: center;
+}
+
+.comment__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 32px;
+}
+
+.comment__author-name {
+
+}
