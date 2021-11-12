@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import ErrorImg from '../../assets/img/icon-404.svg';
 import Radio from '../../components/Radio/Radio';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import Button from '../../components/Button/Button';
 import Feedback from '../../components/Feedback/Feedback';
 import './Suggestions.css';
-import { Link } from 'react-router-dom';
 
 function Suggestions() {
-  const [feedbacks, setFeedbacks] = useState(JSON.parse(localStorage.getItem('feedbacks')));
+  const [feedbacks, setFeedbacks] = useState([]);
   const [category, setCategory] = useState('All');
   const [menuState, setMenuState] = useState(false);
 
