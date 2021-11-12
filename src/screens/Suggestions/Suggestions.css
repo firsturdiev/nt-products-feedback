@@ -161,6 +161,10 @@
   margin-right: auto;
 }
 
+.suggestions__add-btn {
+  line-height: 44px;
+}
+
 .suggestions__list {
   margin: 0;
   padding: 0;
@@ -364,8 +368,11 @@
   }
 
   .suggestions__content-top {
+    position: absolute;
+    top: 71px;
+    left: 0;
+    width: 100%;
     column-gap: 44px;
-    margin-bottom: 32px;
     padding: 8px 24px;
     border-radius: 0;
   }
@@ -378,7 +385,10 @@
   .suggestions__add-btn {
     width: 134px;
     font-size: 13px;
-    line-height: 19px;
+  }
+
+  .suggestions__list {
+    margin-top: 96px;
   }
 
   .suggestions__empty {
