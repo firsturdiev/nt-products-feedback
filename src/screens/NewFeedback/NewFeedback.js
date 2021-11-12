@@ -17,7 +17,7 @@ function NewFeedback() {
       <section className="new-feedback">
         <Link to="/" className="new-feedback__cancel-btn btn btn--back btn--back--light">Go Back</Link>
 
-        <form className="new-feedback__form form form--add" action="https://echo.htmlacademy.ru" method="POST">
+        <form className="new-feedback__form form form--post" action="https://echo.htmlacademy.ru" method="POST">
           <fieldset className="form__inner">
             <legend className="form__heading heading heading--primary">Create New Feedback</legend>
 

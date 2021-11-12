@@ -76,3 +76,10 @@
 .form__cancel-btn {
   margin-right: 16px;
 }
+
+@media screen and (max-width: 600px) {
+  .form__delete-btn {
+    order: 3;
+    margin-top: 16px;
+  }
+}

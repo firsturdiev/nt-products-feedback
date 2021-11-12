@@ -49,7 +49,7 @@ function EditFeedback() {
           <div className="form__end">
             <Button className="form__delete-btn btn--red">Delete</Button>
             <Link to="/" className="form__cancel-btn btn btn--dark">Cancel</Link>
-            <Button className="form__submit-btn btn--blue-orchid" type="submit">Add feedback</Button>
+            <Button className="form__submit-btn btn--blue-orchid" type="submit">Save changes</Button>
           </div>
         </form>
       </section>
