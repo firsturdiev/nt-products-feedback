@@ -1,0 +1,15 @@
+.feedback-details {
+  margin: 0 auto;
+  margin-top: 80px;
+  width: 730px;
+}
+
+.feedback-details__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.feedback-details__edit-btn {
+  line-height: 44px;
+}
