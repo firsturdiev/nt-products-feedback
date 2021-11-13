@@ -396,6 +396,7 @@
   }
 
   .suggestions__empty {
+    margin-top: 96px;
     padding: 76px 25px;
   }
 
