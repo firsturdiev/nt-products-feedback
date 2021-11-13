@@ -16,11 +16,11 @@ function App() {
           <NewFeedback />
         </Route>
 
-        <Route exact path="/feedback/edit">
+        <Route path="/feedback/edit/:id">
           <EditFeedback />
         </Route>
 
-        <Route exact path="/feedback/details">
+        <Route path="/feedback/details/:id">
           <FeedbackDetails />
         </Route>
       </Switch>

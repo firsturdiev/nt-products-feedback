@@ -30,6 +30,10 @@
   transition: color 0.3s;
 }
 
+.feedback--freezed .feedback__title-link {
+  pointer-events: none;
+}
+
 .feedback__title-link:hover {
   color: var(--color-blue-fish);
 }

@@ -105,7 +105,7 @@ function Suggestions() {
                 <ol className="suggestions__list">
                   {
                     feedbacks.map(feedback => (
-                      <Feedback {...feedback} key={feedback.id} />
+                      <Feedback className="suggestions__item " {...feedback} key={feedback.id} />
                     ))
                   }
                 </ol>
