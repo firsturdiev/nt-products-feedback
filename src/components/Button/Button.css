@@ -20,6 +20,11 @@
   opacity: 0.8;
 }
 
+.btn--disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
 .btn--blue-orchid {
   background-color: var(--color-blue-orchid);
 }

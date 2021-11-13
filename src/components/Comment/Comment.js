@@ -1,9 +1,9 @@
 import './Comment.css';
 import Avatar from '../../assets/img/avatar.png';
 
-function Comment() {
+function Comment({className, ...props}) {
   return (
-    <div className="comment">
+    <div className={"comment " + (className || '')} {...props}> 
       <header className="comment__top">
         <img className="comment__avatar" src={Avatar} width="40" height="40" alt="Avatar" />
         <div className="comment__author">

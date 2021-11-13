@@ -197,6 +197,10 @@
   margin-bottom: 48px;
 }
 
+.suggestions__empty-btn {
+  line-height: 44px;
+}
+
 /* RESPONSIVE */
 
 @media screen and (max-width: 1000px) {

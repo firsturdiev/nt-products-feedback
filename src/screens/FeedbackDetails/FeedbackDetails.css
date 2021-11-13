@@ -1,6 +1,7 @@
 .feedback-details {
   margin: 0 auto;
   margin-top: 80px;
+  margin-bottom: 130px;
   width: 730px;
 }
 
@@ -13,4 +14,26 @@
 
 .feedback-details__edit-btn {
   line-height: 44px;
+}
+
+.feedback-details__feedback {
+  margin-bottom: 24px;
+}
+
+/* COMMENTS */
+
+.comments__wrapper {
+  padding: 24px 32px 48px;
+  background-color: var(--color-white);
+  border-radius: 10px;
+}
+
+.comments__heading {
+  margin-bottom: 28px;
+}
+
+.comments__item:not(:last-of-type) {
+  margin-bottom: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(140, 146, 179, 0.25);
 }

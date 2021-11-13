@@ -4,6 +4,7 @@ import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import './EditFeedback.css';
+import Textarea from '../../components/Textarea/Textarea';
 
 function EditFeedback() {
   useEffect(() => {
@@ -42,7 +43,7 @@ function EditFeedback() {
             <div className="form__item">
               <p className="form__item-title heading heading--quaternary">Feedback Detail</p>
               <p className="form__item-subtitle">Include any specific comments on what should be improved, added, etc.</p>
-              <Input className="form__item-field form__item-field--textarea" placeholder=" " minLength="3" required />
+              <Textarea className="form__item-field form__item-field--textarea" placeholder=" " minLength="3" required />
             </div>
           </fieldset>
 

@@ -100,7 +100,7 @@ function Suggestions() {
           </header>
 
           {
-            (feedbacks)
+            (feedbacks.length)
               ? (
                 <ol className="suggestions__list">
                   {
@@ -115,7 +115,7 @@ function Suggestions() {
                   <img className="suggestions__empty-icon" src={ErrorImg} width="131" height="137" alt="" aria-hidden />
                   <h2 className="suggestions__empty-heading heading heading--primary">There is no feedback yet.</h2>
                   <p className="suggestions__empty-text">Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.</p>
-                  <Button className="suggestions__empty-btn btn--blue-orchid">+ Add Feedback</Button>
+                  <Link to="/feedback/new" className="suggestions__empty-btn btn btn--blue-orchid">+ Add Feedback</Link>
                 </div>
               )
           }

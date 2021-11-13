@@ -62,6 +62,10 @@
   width: 100%;
 }
 
+.form__item-field--textarea textarea {
+  min-height: 96px;
+}
+
 .form__cancel-btn, 
 .form__submit-btn,
 .form__delete-btn {

@@ -58,6 +58,10 @@
   line-height: 20px;
 }
 
+.form__item-field--textarea textarea {
+  min-height: 96px;
+}
+
 .form__end {
   text-align: end;
 }
