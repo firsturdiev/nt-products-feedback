@@ -7,44 +7,57 @@ import './Feedback.css';
 function Feedback({ className, title, desc, category, comments, upvotes, id }) {
   const [isUpvoted, setIsUpvoted] = useState(JSON.parse(window.localStorage.getItem('isUpvoted')) || false);
   const [upvotesCount, setUpvotesCount] = useState(upvotes);
+  let liveUpvotesCount;
+  const [upvoteLoading, setUpvoteLoading] = useState(false);
 
   function handleUpvote() {
-    if (!isUpvoted) {
-      fetch(`https://618a17a334b4f400177c43e4.mockapi.io/all/feedbacks/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          upvotes: upvotes + 1
-        })
+    fetch(`https://618a17a334b4f400177c43e4.mockapi.io/all/feedbacks/${id}`)
+      .then(response => response.json())
+      .then(data => {
+        liveUpvotesCount = data.upvotes;
       })
-        .then(() => {
-          setUpvotesCount(upvotesCount + 1);
-          setIsUpvoted(true);
-          window.localStorage.setItem('isUpvoted', 'true');
-        });
-    } else {
-      fetch(`https://618a17a334b4f400177c43e4.mockapi.io/all/feedbacks/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          upvotes: upvotes - 1 
-        })
+      .then(() => {
+        if (!isUpvoted) {
+          setUpvoteLoading(true);
+          fetch(`https://618a17a334b4f400177c43e4.mockapi.io/all/feedbacks/${id}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              upvotes: liveUpvotesCount + 1
+            })
+          })
+            .then(() => {
+              setUpvotesCount(upvotesCount + 1);
+              setIsUpvoted(true);
+              window.localStorage.setItem('isUpvoted', 'true');
+              setUpvoteLoading(false);
+            });
+        } else {
+          setUpvoteLoading(true);
+          fetch(`https://618a17a334b4f400177c43e4.mockapi.io/all/feedbacks/${id}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              upvotes: liveUpvotesCount - 1
+            })
+          })
+            .then(() => {
+              setUpvotesCount(upvotesCount - 1)
+              setIsUpvoted(false);
+              window.localStorage.setItem('isUpvoted', 'false');
+              setUpvoteLoading(false);
+            });
+        }
       })
-        .then(() => {
-          setUpvotesCount(upvotesCount - 1)
-          setIsUpvoted(false);
-          window.localStorage.setItem('isUpvoted', 'false');
-        });
-    }
   }
 
   return (
     <li className={"feedback " + (className || '')}>
-      <Counter onClick={handleUpvote} className={"feedback__upvotes " + (isUpvoted ? 'counter--active' : '')} count={upvotesCount} />
+      <Counter onClick={handleUpvote} className={"feedback__upvotes " + (isUpvoted ? 'counter--active' : '')} count={upvotesCount} disabled={upvoteLoading} />
       <div className="feedback__inner">
         <h3 className="feedback__title heading heading--tertiary">
           <Link to={"/feedback/details/" + id} className="feedback__title-link">{title}</Link>
