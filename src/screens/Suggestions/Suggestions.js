@@ -13,7 +13,7 @@ function Suggestions() {
   const [menuState, setMenuState] = useState(false);
 
   const sortRef = useRef();
-  const [requestURL, setRequestURL] = useState('https://618a17a334b4f400177c43e4.mockapi.io/all/feedbacks?');
+  const [requestURL, setRequestURL] = useState('https://61c434b9f1af4a0017d993dc.mockapi.io/all/feedbacks?');
 
   useEffect(() => {
     document.title = 'Suggestions';
@@ -28,7 +28,7 @@ function Suggestions() {
   useEffect(getRequestURL, [category]);
 
   function getRequestURL() {
-    let URL = 'https://618a17a334b4f400177c43e4.mockapi.io/all/feedbacks?';
+    let URL = 'https://61c434b9f1af4a0017d993dc.mockapi.io/all/feedbacks?';
 
     switch (sortRef.current.value) {
       case 'Least Upvotes':

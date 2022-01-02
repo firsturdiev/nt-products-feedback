@@ -11,7 +11,7 @@ function FeedbackDetails() {
   useEffect(() => {
     document.title = 'Feedback Details';
 
-    fetch(`https://618a17a334b4f400177c43e4.mockapi.io/all/feedbacks/${feedbackId}`)
+    fetch(`https://61c434b9f1af4a0017d993dc.mockapi.io/all/feedbacks/${feedbackId}`)
       .then(response => response.json())
       .then(data => setFeedback(data));
   }, []);

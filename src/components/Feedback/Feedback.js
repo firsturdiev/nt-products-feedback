@@ -11,7 +11,7 @@ function Feedback({ className, title, desc, category, comments, upvotes, id }) {
   const [upvoteLoading, setUpvoteLoading] = useState(false);
 
   function handleUpvote() {
-    fetch(`https://618a17a334b4f400177c43e4.mockapi.io/all/feedbacks/${id}`)
+    fetch(`https://61c434b9f1af4a0017d993dc.mockapi.io/all/feedbacks/${id}`)
       .then(response => response.json())
       .then(data => {
         liveUpvotesCount = data.upvotes;
@@ -19,7 +19,7 @@ function Feedback({ className, title, desc, category, comments, upvotes, id }) {
       .then(() => {
         if (!isUpvoted) {
           setUpvoteLoading(true);
-          fetch(`https://618a17a334b4f400177c43e4.mockapi.io/all/feedbacks/${id}`, {
+          fetch(`https://61c434b9f1af4a0017d993dc.mockapi.io/all/feedbacks/${id}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json'
@@ -36,7 +36,7 @@ function Feedback({ className, title, desc, category, comments, upvotes, id }) {
             });
         } else {
           setUpvoteLoading(true);
-          fetch(`https://618a17a334b4f400177c43e4.mockapi.io/all/feedbacks/${id}`, {
+          fetch(`https://61c434b9f1af4a0017d993dc.mockapi.io/all/feedbacks/${id}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json'

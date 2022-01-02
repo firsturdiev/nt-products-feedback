@@ -21,7 +21,7 @@ function NewFeedback() {
     setLoading(true);
     const feedbackData = new FormData(e.target);
 
-    fetch('https://618a17a334b4f400177c43e4.mockapi.io/all/feedbacks', {
+    fetch('https://61c434b9f1af4a0017d993dc.mockapi.io/all/feedbacks', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
